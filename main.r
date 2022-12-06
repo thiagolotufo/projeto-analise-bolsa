@@ -1,6 +1,5 @@
 install.packages("tidyquant")
 install.packages("dplyr")
-
 library(tidyquant)
 library(dplyr)
 
@@ -15,19 +14,19 @@ prices <- tq_get(tickers,
 
 View(prices)
 
-teste1 <- prices  %>%  
+teste1 <- prices  %>%
   filter(symbol == "EGIE3.SA")
 
-teste2 <- prices  %>%  
+teste2 <- prices  %>%
   filter(symbol == "GOLL4.SA")
 
-teste3 <- prices  %>%  
+teste3 <- prices  %>%
   filter(symbol == "PRIO3.SA")
 
-teste4 <- prices  %>%  
+teste4 <- prices  %>%
   filter(symbol == "GGBR4.SA")
 
-teste5 <- prices  %>%  
+teste5 <- prices  %>%
   filter(symbol == "MGLU3.SA")
 
 Media_EGIE3 <- mean(teste1$close, na.rm = TRUE)
@@ -36,9 +35,6 @@ Media_PRIO3 <- mean(teste3$close, na.rm = TRUE)
 Media_GGBR4 <- mean(teste4$close, na.rm = TRUE)
 Media_MGLU3 <- mean(teste5$close, na.rm = TRUE)
 
-View(Media_EGIE3)
-View(Media_GOLL4)
-View(Media_PRIO3)
-View(Media_GGBR4)
-View(Media_MGLU3)
+calc <- summary(teste1$close)
 
+View(calc)
