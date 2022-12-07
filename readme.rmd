@@ -41,7 +41,6 @@ Os cálculos são:
 - Mediana;
 - Valor mínimo;
 - Valor máximo;
-- 
 
 ## Análise final
 
@@ -57,7 +56,7 @@ prices <- tq_get(tickers,
                   from = start,
                   to = end)`
                   
-### Cálculos de açãos
+### Cálculos de ações
 
 `r 
 
@@ -111,6 +110,60 @@ MGLU3 <- c(mean_mglu3, median_mglu3, max_mglu3, min_mglu3)`
 `r tabela_egie3 <- data.frame(Índices, EGIE3, GOLL4, PRIO3, GGBR4, MGLU3)``
 
 `r tabela_egie3 %>% knitr::kable()`
+
+# Melhores dias de compra de ações
+
+## MGLU3
+
+`r buy_day_mglu3 <- mglu3[which.min(mglu3$close),]`
+O melhor dia de compra das ações do Magalu foi `r buy_day_mglu3$date` no valor de R\$ `r buy_day_mglu3$close`
+
+## EGIE3
+
+`r buy_day_egie3 <- egie3[which.min(egie3$close),]`
+O melhor dia de compra das ações da Egiee foi `r buy_day_egie3$date` no valor de R\$ `r buy_day_egie3$close`
+
+## GOLL4
+
+`r buy_day_goll4 <- goll4[which.min(goll4$close),]`
+O melhor dia de compra das ações da Gol foi `r buy_day_goll4$date` no valor de R\$ `r buy_day_goll4$close`
+
+## PRIO3
+
+`r buy_day_prio3 <- prio3[which.min(prio3$close),]`
+O melhor dia de compra das ações da PetroRio foi `r buy_day_prio3$date` no valor de R\$ `r buy_day_prio3$close`
+
+## GGBR4
+`r buy_day_ggbr4 <- ggbr4[which.min(ggbr4$close),]`
+
+O melhor dia de compra das ações da Gerdau foi `r buy_day_ggbr4$date` no valor de R\$ `r buy_day_ggbr4$close`
+
+# Melhores dias de venda de ações
+
+## MGLU3
+
+`r sell_day_mglu3 <- mglu3[which.max(mglu3$close),]`
+O melhor dia de compra das ações do Magalu foi `r sell_day_mglu3$date` no valor de R\$ `r sell_day_mglu3$close`
+
+## EGIE3
+
+`r sell_day_egie3 <- egie3[which.max(egie3$close),]`
+O melhor dia de compra das ações da Egiee foi `r sell_day_egie3$date` no valor de R\$ `r sell_day_egie3$close`
+
+## GOLL4
+
+`r sell_day_goll4 <- goll4[which.max(goll4$close),]`
+O melhor dia de compra das ações da Gol foi `r sell_day_goll4$date` no valor de R\$ `r sell_day_goll4$close`
+
+## PRIO3
+
+`r sell_day_prio3 <- prio3[which.max(prio3$close),]`
+O melhor dia de compra das ações da PetroRio foi `r sell_day_prio3$date` no valor de R\$ `r sell_day_prio3$close`
+
+## GGBR4
+
+`r sell_day_ggbr4 <- ggbr4[which.max(ggbr4$close),]`
+O melhor dia de compra das ações da Gerdau foi `r sell_day_ggbr4$date` no valor de R\$ `r sell_day_ggbr4$close`
 
 ## Diferença entre o máximo e mínimo.
 ## Valor da ação no primeiro dia analisado
