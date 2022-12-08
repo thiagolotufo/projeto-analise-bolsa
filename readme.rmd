@@ -138,6 +138,19 @@ O melhor dia de compra das ações da PetroRio foi `r buy_day_prio3$date` no val
 
 O melhor dia de compra das ações da Gerdau foi `r buy_day_ggbr4$date` no valor de R\$ `r buy_day_ggbr4$close`
 
+## Informações gráficas
+
+`r library(ggplot2)`
+
+`r datas <- c(buy_day_mglu3$date, buy_day_egie3$date, buy_day_goll4$date, buy_day_prio3$date, buy_day_ggbr4$date)
+fechamento <- c(buy_day_mglu3$close, buy_day_egie3$close, buy_day_goll4$close, buy_day_prio3$close, buy_day_ggbr4$close)
+tabela <- data.frame(datas, fechamento)`
+
+```{r ggplot}
+ggplot(tabela, aes(x = datas, y = fechamento))+
+  geom_point()
+```
+
 # Melhores dias de venda de ações
 
 ## MGLU3
@@ -164,6 +177,19 @@ O melhor dia de compra das ações da PetroRio foi `r sell_day_prio3$date` no va
 
 `r sell_day_ggbr4 <- ggbr4[which.max(ggbr4$close),]`
 O melhor dia de compra das ações da Gerdau foi `r sell_day_ggbr4$date` no valor de R\$ `r sell_day_ggbr4$close`
+
+## Informações gráficas
+
+`r library(ggplot2)`
+
+`r datas <- c(sell_day_mglu3$date, sell_day_egie3$date, sell_day_goll4$date, sell_day_prio3$date, sell_day_ggbr4$date)
+fechamento <- c(sell_day_mglu3$close, sell_day_egie3$close, sell_day_goll4$close, sell_day_prio3$close, sell_day_ggbr4$close)
+tabela <- data.frame(datas, fechamento)`
+
+```{r ggplot1}
+ggplot(tabela, aes(x = datas, y = fechamento))+
+  geom_point()
+```
 
 ## Diferença entre o máximo e mínimo.
 ## Valor da ação no primeiro dia analisado
