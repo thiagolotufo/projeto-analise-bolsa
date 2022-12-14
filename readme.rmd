@@ -25,11 +25,11 @@ O grupo responsável por esta análise é composto pelos seguintes integrantes:
 
 As ações analisadas serão:
 
-- EGIE3;
-- GOLL4;
-- PRIO3;
-- GGBR4;
-- MGLU3.
+- Engie(EGIE3);
+- Gol(GOLL4);
+- PetroRio(PRIO3);
+- Gerdau(GGBR4);
+- Magazine Luiza(MGLU3).
 
 ## Análise a ser realizada
 
@@ -41,6 +41,8 @@ Os cálculos são:
 - Mediana;
 - Valor mínimo;
 - Valor máximo;
+- Taxa de variação;
+- Ganho/perda total.
 
 ## Análise final
 
@@ -74,124 +76,72 @@ ggbr4 <- prices  %>%
 
 mglu3 <- prices  %>%
   filter(symbol == "MGLU3.SA")
+  
+VINICIAL <- list(egie3[egie3$date == "2018-01-02", ], goll4[goll4$date == "2018-01-02", ], prio3[prio3$date == "2018-01-02", ], ggbr4[ggbr4$date == "2018-01-02", ], mglu3[mglu3$date == "2018-01-02", ])
+VFINAL <- list(egie3[egie3$date == "2022-11-21", ], goll4[goll4$date == "2022-11-21", ], prio3[prio3$date == "2022-11-21", ], ggbr4[ggbr4$date == "2022-11-21", ], mglu3[mglu3$date == "2022-11-21", ])
 
-mean_egie3 <- mean(egie3$close, na.rm = TRUE)
-median_egie3 <- median(egie3$close, na.rm = TRUE)
-max_egie3 <- max(egie3$close)
-min_egie3 <- min(egie3$close)
+MEDIA <- c(mean(egie3$close, na.rm = TRUE), mean(goll4$close, na.rm = TRUE), mean(prio3$close, na.rm = TRUE), mean(ggbr4$close, na.rm = TRUE), mean(mglu3$close, na.rm = TRUE))
+MEDIANA <- c(median(egie3$close, na.rm = TRUE), median(goll4$close, na.rm = TRUE), median(prio3$close, na.rm = TRUE), median(ggbr4$close, na.rm = TRUE), median(mglu3$close, na.rm = TRUE))
+MAXIMA <- c(max(egie3$close), max(goll4$close), max(prio3$close), max(ggbr4$close), max(mglu3$close))
+MINIMA <- c(min(egie3$close), min(goll4$close), min(prio3$close), min(ggbr4$close), min(mglu3$close))
+VALOR_INICIAL <- c(VINICIAL[[1]]$close, VINICIAL[[2]]$close, VINICIAL[[3]]$close, VINICIAL[[4]]$close, VINICIAL[[5]]$close)
+VALOR_FINAL <- c(VFINAL[[1]]$close, VFINAL[[2]]$close, VFINAL[[3]]$close, VFINAL[[4]]$close, VFINAL[[5]]$close)
+VARIACAO <- c((VFINAL[[1]]$close-VINICIAL[[1]]$close), (VFINAL[[2]]$close-VINICIAL[[2]]$close), (VFINAL[[3]]$close-VINICIAL[[3]]$close), (VFINAL[[4]]$close-VINICIAL[[4]]$close), (VFINAL[[5]]$close-VINICIAL[[5]]$close))
+ACOES <- c('EGIE3', 'GOLL4', 'PRIO3', 'GGBR4', 'MGLU3')
+EMPRESA <- c('ENGIE', 'GOL', 'PETRO RIO', 'GERDAU', 'MAGAZINE LUIZA')`
 
-mean_goll4 <- mean(goll4$close, na.rm = TRUE)
-median_goll4 <- median(goll4$close, na.rm = TRUE)
-max_goll4 <- max(goll4$close)
-min_goll4 <- min(goll4$close)
-
-mean_prio3 <- mean(prio3$close, na.rm = TRUE)
-median_prio3 <- median(prio3$close, na.rm = TRUE)
-max_prio3 <- max(prio3$close)
-min_prio3 <- min(prio3$close)
-
-mean_ggbr4 <- mean(ggbr4$close, na.rm = TRUE)
-median_ggbr4 <- median(ggbr4$close, na.rm = TRUE)
-max_ggbr4 <- max(ggbr4$close)
-min_ggbr4 <- min(ggbr4$close)
-
-mean_mglu3 <- mean(mglu3$close, na.rm = TRUE)
-median_mglu3 <- median(mglu3$close, na.rm = TRUE)
-max_mglu3 <- max(mglu3$close)
-min_mglu3 <- min(mglu3$close)
-
-Índices <- c('Media', 'Mediana', 'Valor máximo', 'Valor mínimo')
-EGIE3 <- c(mean_egie3, median_egie3, max_egie3, min_egie3)
-GOLL4 <- c(mean_goll4, median_goll4, max_goll4, min_goll4)
-PRIO3 <- c(mean_prio3, median_prio3, max_prio3, min_prio3)
-GGBR4 <- c(mean_ggbr4, median_ggbr4, max_ggbr4, min_ggbr4)
-MGLU3 <- c(mean_mglu3, median_mglu3, max_mglu3, min_mglu3)`
-
-`r tabela_egie3 <- data.frame(Índices, EGIE3, GOLL4, PRIO3, GGBR4, MGLU3)``
+`r tabela_egie3 <- data.frame(EMPRESA, ACOES, MEDIA, MEDIANA, MAXIMA, MINIMA, VALOR_INICIAL, VALOR_FINAL, VARIACAO)`
 
 `r tabela_egie3 %>% knitr::kable()`
 
-# Melhores dias de compra de ações
+# Melhores dias de compra e venda das ações
 
-## MGLU3
+`r VENDA <- list(egie3[which.max(egie3$close),], goll4[which.max(goll4$close),], prio3[which.max(prio3$close),], ggbr4[which.max(ggbr4$close),],  mglu3[which.max(mglu3$close),])
+COMPRA <- list(egie3[which.min(egie3$close),], goll4[which.min(goll4$close),], prio3[which.min(prio3$close),], ggbr4[which.min(ggbr4$close),],  mglu3[which.min(mglu3$close),])`
 
-`r buy_day_mglu3 <- mglu3[which.min(mglu3$close),]`
-O melhor dia de compra das ações do Magalu foi `r buy_day_mglu3$date` no valor de R\$ `r buy_day_mglu3$close`
+`r DATA_VENDA <- c(VENDA[[1]]$date, VENDA[[2]]$date, VENDA[[3]]$date, VENDA[[4]]$date, VENDA[[5]]$date)
+VALOR_VENDA <- c(VENDA[[1]]$close, VENDA[[2]]$close, VENDA[[3]]$close, VENDA[[4]]$close, VENDA[[5]]$close)
+DATA_COMPRA <-  c(COMPRA[[1]]$date, COMPRA[[2]]$date, COMPRA[[3]]$date, COMPRA[[4]]$date, COMPRA[[5]]$date)
+VALOR_COMPRA <- c(COMPRA[[1]]$close, COMPRA[[2]]$close, COMPRA[[3]]$close, COMPRA[[4]]$close, COMPRA[[5]]$close)
 
-## EGIE3
+VARIACAO <- c((VENDA[[1]]$close-COMPRA[[1]]$close), (VENDA[[2]]$close-COMPRA[[2]]$close), (VENDA[[3]]$close-COMPRA[[3]]$close), (VENDA[[4]]$close-COMPRA[[4]]$close), (VENDA[[5]]$close-COMPRA[[5]]$close))`
 
-`r buy_day_egie3 <- egie3[which.min(egie3$close),]`
-O melhor dia de compra das ações da Egiee foi `r buy_day_egie3$date` no valor de R\$ `r buy_day_egie3$close`
+`r tabela_egie3 <- data.frame(EMPRESA, ACOES, DATA_VENDA, VALOR_VENDA, DATA_COMPRA, VALOR_COMPRA, VARIACAO)`
 
-## GOLL4
-
-`r buy_day_goll4 <- goll4[which.min(goll4$close),]`
-O melhor dia de compra das ações da Gol foi `r buy_day_goll4$date` no valor de R\$ `r buy_day_goll4$close`
-
-## PRIO3
-
-`r buy_day_prio3 <- prio3[which.min(prio3$close),]`
-O melhor dia de compra das ações da PetroRio foi `r buy_day_prio3$date` no valor de R\$ `r buy_day_prio3$close`
-
-## GGBR4
-`r buy_day_ggbr4 <- ggbr4[which.min(ggbr4$close),]`
-
-O melhor dia de compra das ações da Gerdau foi `r buy_day_ggbr4$date` no valor de R\$ `r buy_day_ggbr4$close`
+`r tabela_egie3 %>% knitr::kable()`
 
 ## Informações gráficas
 
 `r library(ggplot2)`
 
-`r datas <- c(buy_day_mglu3$date, buy_day_egie3$date, buy_day_goll4$date, buy_day_prio3$date, buy_day_ggbr4$date)
-fechamento <- c(buy_day_mglu3$close, buy_day_egie3$close, buy_day_goll4$close, buy_day_prio3$close, buy_day_ggbr4$close)
+`r datas <- c(VENDA[[1]]$date, VENDA[[2]]$date, VENDA[[3]]$date, VENDA[[4]]$date, VENDA[[5]]$date)
+
+fechamento <- c(VENDA[[1]]$close, VENDA[[2]]$close, VENDA[[3]]$close, VENDA[[4]]$close, VENDA[[5]]$close)
+
 tabela <- data.frame(datas, fechamento)`
 
-```{r ggplot}
-ggplot(tabela, aes(x = datas, y = fechamento))+
-  geom_point()
-```
-
-# Melhores dias de venda de ações
-
-## MGLU3
-
-`r sell_day_mglu3 <- mglu3[which.max(mglu3$close),]`
-O melhor dia de compra das ações do Magalu foi `r sell_day_mglu3$date` no valor de R\$ `r sell_day_mglu3$close`
-
-## EGIE3
-
-`r sell_day_egie3 <- egie3[which.max(egie3$close),]`
-O melhor dia de compra das ações da Egiee foi `r sell_day_egie3$date` no valor de R\$ `r sell_day_egie3$close`
-
-## GOLL4
-
-`r sell_day_goll4 <- goll4[which.max(goll4$close),]`
-O melhor dia de compra das ações da Gol foi `r sell_day_goll4$date` no valor de R\$ `r sell_day_goll4$close`
-
-## PRIO3
-
-`r sell_day_prio3 <- prio3[which.max(prio3$close),]`
-O melhor dia de compra das ações da PetroRio foi `r sell_day_prio3$date` no valor de R\$ `r sell_day_prio3$close`
-
-## GGBR4
-
-`r sell_day_ggbr4 <- ggbr4[which.max(ggbr4$close),]`
-O melhor dia de compra das ações da Gerdau foi `r sell_day_ggbr4$date` no valor de R\$ `r sell_day_ggbr4$close`
+```{r Venda}
+ggplot(tabela, aes(x = datas, y = fechamento, colour = ACOES))+
+  geom_point()+
+  scale_color_manual(labels = c("EGIE3", "MGLU3", "GOLL4", "PRIO3", "GGBR4"), values = c("#130912", "#602749", "#17468f", "#639468", "#ed2327")) +
+  labs(color = "Ações")
+``` 
 
 ## Informações gráficas
 
 `r library(ggplot2)`
 
-`r datas <- c(sell_day_mglu3$date, sell_day_egie3$date, sell_day_goll4$date, sell_day_prio3$date, sell_day_ggbr4$date)
-fechamento <- c(sell_day_mglu3$close, sell_day_egie3$close, sell_day_goll4$close, sell_day_prio3$close, sell_day_ggbr4$close)
+`r datas <- c(COMPRA[[1]]$date, COMPRA[[2]]$date, COMPRA[[3]]$date, COMPRA[[4]]$date, COMPRA[[5]]$date)
+
+fechamento <- c(COMPRA[[1]]$close, COMPRA[[2]]$close, COMPRA[[3]]$close, COMPRA[[4]]$close, COMPRA[[5]]$close)
+
 tabela <- data.frame(datas, fechamento)`
 
-```{r ggplot1}
-ggplot(tabela, aes(x = datas, y = fechamento))+
-  geom_point()
-```
+`r datas`
 
-## Diferença entre o máximo e mínimo.
-## Valor da ação no primeiro dia analisado
-## Valor da ação no último dia analisado
-## Diferença entre ações
+```{r Compra}
+ggplot(tabela, aes(x = datas, y = fechamento, colour = ACOES))+
+  geom_point()+
+  scale_color_manual(labels = c("EGIE3", "MGLU3", "GOLL4", "PRIO3", "GGBR4"), values = c("#130912", "#602749", "#17468f", "#639468", "#ed2327")) +
+  labs(color = "Ações")
+``` 

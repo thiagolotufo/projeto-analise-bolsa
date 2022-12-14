@@ -85,5 +85,7 @@ buy_day_ggbr4 <- ggbr4[which.min(ggbr4$close),]
 View(buy_day_ggbr4$date)
 View(sell_day_ggbr4$date)
 
+acoes <- c("egie3", "mglu3", "goll4", "prio3", "ggbr4")
 
-
+venda <- list(egie3[which.max(egie3$close),], mglu3[which.max(mglu3$close),], goll4[which.max(goll4$close),], prio3[which.max(prio3$close),],  ggbr4[which.max(ggbr4$close),])
+compra <- list(egie3[which.min(egie3$close),], mglu3[which.min(mglu3$close),], goll4[which.min(goll4$close),], prio3[which.min(prio3$close),],  ggbr4[which.min(ggbr4$close),])
